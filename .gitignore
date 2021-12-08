@@ -1,129 +1,105 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+#R.J. Garcia
+#CYOA CS112
+#Last Update December 2021
 
-# C extensions
-*.so
+#Description[0] north[1] south[2] east[3] west[4]
+goOn = True
+import time
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+def cont(yn):
+    if yn == 'y':
+        return True
+    elif yn == 'n':
+        return False
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+roomlist =[]
+Room0 = ["You start in the throne room. You call one of your servants over to ask if the equipment is all done and ready to go. He replies it is Enkidu who just got back from the blacksmiths.",2, None, 1, 3]
+Room1 = ["You call for Enkidu in this room, but no one replies.", None, None, None, 0]
+Room2 = ["You see the elders all gathered together. You ask them if Enkidu has returned from the blacksmiths. They replied that he had just gone into the hallway. They also try to reason with you not to go on this adventure to defeat Humbaba. You reply I'm going and that's that. ", None, 0, None, 4]
+Room3 = [" You enter your trophy room you call for Enkidu. You hear a 'Gilgamesh?' coming from the door in front of you.", 4, None, 0, None]
+Room4 = ["You found Enkidu in the hallway! He is already in his armor. You ask him where he put the equipment? He replies I set it in that room to your left.", None, 3, None, 5]
+Room5 = ["You go into the room and find the all-new battle armor and new battle-axe and sword. You get suited up. You tell Enkidu you're ready to go. There is a door right in front of you. ", 6, None, 4, None]
+Room6 = ["You exit the palace", None, 5, None, None]
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+roomlist = [Room0, Room1, Room2, Room3, Room4, Room5, Room6]
+next_room = 0
+current_room = 0
+Done = True 
+print ("Welcome to the game, You play as Gilgamesh from The Epic of Gilgamesh. You will go through different rooms of Gilgamesh's palace. In search of your weapons and armor. For your battle with Humbaba, You will choose to go north, south, east, or west to find the equipment.")
+while Done:
+  print(roomlist[current_room][0])
+  userInput = input("What direction do you want to go?\n")[0].lower().strip()
+  if userInput == "n":
+    next_room = roomlist[current_room][1]
+  elif userInput == "s":
+    next_room = roomlist[current_room][2]
+  elif userInput == "e":
+    next_room = roomlist[current_room][3]
+  elif userInput == "w":
+    next_room = roomlist[current_room][4] 
+  elif userInput == "w":
+    next_room = roomlist[current_room][5] 
+  elif userInput == "n":
+    next_room = roomlist[current_room][6]
+  else: 
+    print("invalid response")
+  if next_room == None: 
+    print("You can't go that direction. Try a different direction.")  
+  else:
+    current_room = next_room 
+  if current_room == 6:  
+    Done = False
+  print("\n\n")  
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
+print("Conjugations you have found the equipment now you are on your way to Humbaba")
+print(roomlist[6][0])
 
-# Translations
-*.mo
-*.pot
+while goOn == True:
+    print("\n\n")
+    print("You have traveled nine days and have reached the Cedar Forest you go in and find Humbaba. Humbaba yells out 'prepare to die. You get ready for battle.")
+    time.sleep(1)
+    
+    choice = input('Sword or Axe?').lower().strip()
+    if choice == 'axe':
+        print("Good choice! You swing the axe at Humbaba and you manage to get a hit on him.")
+        time.sleep(1)
+        print("\n\n")
+        print("Humbaba releases his breath that can burn your fleash!")
+      
+        choice = input('Move or Throw your axe?').lower().strip()
+        if choice == 'move':
+            print("You moved out of the way and mange to get anohter slash on Humbaba")
+            print("\n\n")
+            time.sleep(1)
+            print("Humbaba gets back up and stomps furiously and splits the ground open")
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+            choice = input('Move Left or Right?').lower().strip()
+            if choice == 'left':
+              print("You fell right into the sinkhole")
+              break
 
-# Flask stuff:
-instance/
-.webassets-cache
+            elif choice == 'right':
+              print("You moved out of the way of the sinkhole and go and slash Humbaba one last time to defeat him. The End")
+            
+            else:
+              print('invalid choice')
 
-# Scrapy stuff:
-.scrapy
+        elif choice == 'throw your axe':
+           print("Your axe melts in Humbaba's breath and Humbaba kills you")
+           time.sleep(1)
+           break
+        
 
-# Sphinx documentation
-docs/_build/
+        else:
+          print("invalid choice")
 
-# PyBuilder
-target/
+    elif choice == 'sword':
+        print("You try to swing your sword at Humbaba. But Humbaba breaks the sword then you!")
+        time.sleep(1)   
 
-# Jupyter Notebook
-.ipynb_checkpoints
+    
+    else:
+        print('Pick sword or Axe next time!')
+    decision = input('Do you want to play again? y/n \n')
+    goOn = cont(decision)
 
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
